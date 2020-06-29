@@ -96,3 +96,29 @@ python random_array.py
 | ap            | 17.8      |
 | cl            | 17.3      |
 | broadwell     | 18.4      |
+
+## LU decomposition
+
+```
+from time import perf_counter
+
+import numpy as np
+import scipy as sp
+from scipy.linalg import lu
+
+N = 10000
+cpu_runs = 3
+
+times = []
+X = np.random.randn(N, N).astype(np.float64)
+for _ in range(cpu_runs):
+  t0 = perf_counter()
+  p, l, u = lu(X, check_finite=False)
+  times.append(perf_counter() - t0)
+print("CPU time: ", min(times))
+print("NumPy version: ", np.__version__)
+print("SciPy version: ", sp.__version__)
+print(p.sum())
+print(times)
+```
+
