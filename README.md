@@ -239,7 +239,7 @@ create_box      1 box
 create_atoms    1 box
 mass            1 1.0
 
-replicate       5 5 5 
+replicate       3 3 3
 
 velocity        all create 1.0 87287
 
@@ -254,8 +254,8 @@ fix             2 all langevin 1.0 1.0 1.0 48279
 
 timestep        0.005
 
-thermo          5000
-run             10000
+thermo          100
+run             1000
 ```
 
 ### Broadwell
@@ -267,4 +267,5 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_broadwell 
 -D PKG_KSPACE=yes -D FFT=MKL -D FFT_SINGLE=yes \
 -D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
 ```
+ntasks=1, cpus-per-tasks=1: t=
 
