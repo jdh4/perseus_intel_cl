@@ -219,3 +219,23 @@ OMP_NUM_TASKS=16 python svd.py
 | cl            | 36.9   |
 | amd           | 92.4   |
 | broadwell     | 54.2   |
+
+## LAMMPS
+
+```
+ssh perseus
+wget https://github.com/lammps/lammps/archive/stable_3Mar2020.tar.gz
+
+module load intel/19.0/64/19.0.5.281 intel-mpi/intel/2018.3/64
+```
+
+### Broadwell
+
+```
+cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_broadwell -D ENABLE_TESTING=yes \
+-D BUILD_MPI=yes -D BUILD_OMP=yes -D CMAKE_CXX_COMPILER=icpc -D CMAKE_BUILD_TYPE=Release \
+-D CMAKE_CXX_FLAGS_RELEASE="-Ofast -xHost -mtune=broadwell -DNDEBUG" \
+-D PKG_KSPACE=yes -D FFT=MKL -D FFT_SINGLE=yes \
+-D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
+```
+
