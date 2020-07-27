@@ -361,9 +361,11 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_ap_avx512 
 ntasks=96, cpus-per-tasks=1: t=18.7 s
 ntasks=1, cpus-per-tasks=96: t=323.0 s
 ntasks=48, cpus-per-tasks=1: t=38.7 s
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s
 
 ### Cascade Lake (avx512)
 
 Here we use the same build as for the AP node.
 
 ntasks=32, cpus-per-tasks=1: t=54 s
+ntasks=16, cpus-per-tasks=1: t=108.1 s
