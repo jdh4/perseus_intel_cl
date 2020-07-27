@@ -391,6 +391,16 @@ Here we use the same avx2 build as for the AP node.
 ntasks=32, cpus-per-tasks=1: t=56.4 s  
 ntasks=16, cpus-per-tasks=1: t=105.1 s  
 
+### AMD (avx2)
+
+```
+cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_amd_avx2 -D ENABLE_TESTING=yes \
+-D BUILD_MPI=yes -D BUILD_OMP=yes -D CMAKE_CXX_COMPILER=icpc -D CMAKE_BUILD_TYPE=Release \
+-D CMAKE_CXX_FLAGS_RELEASE="-ipo -O3 -no-prec-div -fp-model fast=2 -march=core-avx2 -DNDEBUG" \
+-D PKG_KSPACE=yes -D FFT=MKL -D FFT_SINGLE=yes \
+-D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
+```
+
 # LAMMPS (solvated peptide)
 
 ```
