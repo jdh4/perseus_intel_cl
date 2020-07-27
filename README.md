@@ -18,8 +18,8 @@ Slurm as well as a special partition.
    has 16 cores/socket, 192G RAM with 6 memory channels per socket
    #SBATCH -C cl
 
-[coming soon...]
-3) AMD Rome ()
+3) AMD  EPYC 7542 32-Core Processor, 2.9 GHz
+   has 32 cores/socket (64/node), 256G RAM with 8 memory channels per socket
    #SBATCH -C amd
 ```
 
