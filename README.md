@@ -63,7 +63,7 @@ Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca 
 
 ## Create 4 GB or 40 GB array of doubles in NumPy
 
-```
+```python
 import numpy as np
 from time import perf_counter
 
@@ -101,7 +101,7 @@ python random_array.py
 
 ## LU decomposition
 
-```
+```python
 from time import perf_counter
 
 import numpy as np
@@ -124,11 +124,32 @@ print(p.sum())
 print(times)
 ```
 
-| Node          | Run Time (s)  |
-| ------------- |:-------------:|
-| ap            | 9.4 (9.5)     |
-| cl            | 9.1 (9.1)     |
-| broadwell     | 15.9 (15.9)   |
+```
+#!/bin/bash
+#SBATCH --job-name=myjob         # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=<T>      # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=7G
+#SBATCH --time=00:05:00          # total run time limit (HH:MM:SS)
+# SBATCH -p test
+# SBATCH -C cl
+# SBATCH -C ap
+
+hostname
+
+module purge
+module load anaconda3/2020.2
+
+OMP_NUM_TASKS=<T> python lu.py
+```
+
+| Node          | Run Time (s) with 1 core | Run Time (s) with 4 cores | 
+| ------------- |:-------------:|:------------------------------------:|
+| ap            | 9.4           | 3.5  | 
+| cl            | 9.1           | 3.5  |
+| amd           | 15.5          | 4.5  |
+| broadwell     | 15.9          | 5.4  |
 
 ## SVD
 
