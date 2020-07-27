@@ -168,8 +168,54 @@ OMP_NUM_TASKS=<T> python lu.py
 
 ## SVD
 
+```python
+from time import perf_counter
+
+N = 10000
+cpu_runs = 3
+
+times = []
+import numpy as np
+X = np.random.randn(N, N).astype(np.float64)
+for _ in range(cpu_runs):
+  t0 = perf_counter()
+  u, s, v = np.linalg.svd(X)
+  times.append(perf_counter() - t0)
+print("CPU time: ", min(times), flush=True)
+print("NumPy version: ", np.__version__)
+print(s.sum())
+print(times)
+```
+
+
+```
+#!/bin/bash
+#SBATCH --job-name=myjob         # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=2               # total number of tasks across all nodes
+#SBATCH --ntasks-per-socket=1    # total number of tasks across all nodes
+#SBATCH --cpus-per-task=8        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=100G
+#SBATCH --time=00:05:00          # total run time limit (HH:MM:SS)
+#SBATCH -p test
+#SBATCH -C cl
+# SBATCH -C ap
+# SBATCH -C amd
+
+hostname
+
+numactl -s
+taskset -c -p $$
+
+module purge
+module load anaconda3/2020.2
+
+OMP_NUM_TASKS=16 python svd.py
+```
+
 | Node          | Run Time (s)  |
 | ------------- |:-------------:|
-| ap            | 10.6 (10.6)   |
-| cl            | 11.6 (11.6)   |
-| broadwell     | 14.7 (14.7)   |
+| ap            | 38.8   |
+| cl            | 36.9   |
+| amd           | 92.4   |
+| broadwell     |    |
