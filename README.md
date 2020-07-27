@@ -276,7 +276,7 @@ OMP_NUM_TASKS=16 python svd.py
 | amd           | 92.4   |
 | broadwell     | 54.2   |
 
-## LAMMPS
+## LAMMPS (simple atomic fluid)
 
 ```
 ssh perseus
@@ -333,7 +333,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 srun $HOME/.local/bin/lmp_perseus_broadwell -sf omp -in in.melt
 ```
 
-### Broadwell
+### Broadwell (xHost = avx2)
 
 ```
 cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_broadwell -D ENABLE_TESTING=yes \
@@ -342,11 +342,11 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_broadwell 
 -D PKG_KSPACE=yes -D FFT=MKL -D FFT_SINGLE=yes \
 -D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
 ```
-ntasks=1, cpus-per-tasks=28: t=310.8 s
-ntasks=28, cpus-per-tasks=1: t=72.5 s
-ntasks=4, cpus-per-tasks=7: t=123.4 s
-ntasks=7, cpus-per-tasks=4: t=102.7 s
-ntasks=14, cpus-per-tasks=1: t=148.7 s
+ntasks=1, cpus-per-tasks=28: t=310.8 s  
+ntasks=28, cpus-per-tasks=1: t=72.5 s  
+ntasks=4, cpus-per-tasks=7: t=123.4 s  
+ntasks=7, cpus-per-tasks=4: t=102.7 s  
+ntasks=14, cpus-per-tasks=1: t=148.7 s  
 
 ### Cascade Lake AP (avx512)
 
@@ -358,14 +358,81 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_ap_avx512 
 -D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
 ```
 
-ntasks=96, cpus-per-tasks=1: t=18.7 s
-ntasks=1, cpus-per-tasks=96: t=323.0 s
-ntasks=48, cpus-per-tasks=1: t=38.7 s
-ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s
+ntasks=96, cpus-per-tasks=1: t=18.7 s  
+ntasks=1, cpus-per-tasks=96: t=323.0 s  
+ntasks=48, cpus-per-tasks=1: t=38.7 s  
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s  
 
 ### Cascade Lake (avx512)
 
-Here we use the same build as for the AP node.
+Here we use the same avx512 build as for the AP node.
 
-ntasks=32, cpus-per-tasks=1: t=54 s
-ntasks=16, cpus-per-tasks=1: t=108.1 s
+ntasks=32, cpus-per-tasks=1: t=54.0 s  
+ntasks=16, cpus-per-tasks=1: t=108.1 s  
+
+
+### Cascade Lake AP (avx2)
+
+```
+cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_ap_avx2 -D ENABLE_TESTING=yes \
+-D BUILD_MPI=yes -D BUILD_OMP=yes -D CMAKE_CXX_COMPILER=icpc -D CMAKE_BUILD_TYPE=Release \
+-D CMAKE_CXX_FLAGS_RELEASE="-Ofast -xCORE-AVX2 -mtune=cascadelake -DNDEBUG" \
+-D PKG_KSPACE=yes -D FFT=MKL -D FFT_SINGLE=yes \
+-D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
+```
+
+ntasks=96, cpus-per-tasks=1: t=21.5 s  
+ntasks=48, cpus-per-tasks=1: t=37.3 s  
+
+### Cascade Lake (avx2)
+
+Here we use the same avx2 build as for the AP node.
+
+ntasks=32, cpus-per-tasks=1: t=56.4 s  
+ntasks=16, cpus-per-tasks=1: t=105.1 s  
+
+# LAMMPS (solvated peptide)
+
+```
+units		real
+atom_style	full
+
+pair_style	lj/charmm/coul/long 8.0 10.0 10.0
+bond_style      harmonic
+angle_style     charmm
+dihedral_style  charmm
+improper_style  harmonic
+kspace_style	pppm 0.0001
+
+read_data	../data.peptide
+replicate       5 5 5
+
+neighbor	2.0 bin
+neigh_modify	delay 5
+
+timestep	2.0
+
+thermo_style	multi
+thermo		100
+
+fix		1 all nvt temp 275.0 275.0 100.0 tchain 1
+fix		2 all shake 0.0001 10 100 b 4 6 8 10 12 14 18 a 31
+
+group		peptide type <= 12
+
+run		1000
+```
+
+### Cascade Lake AP (avx512)
+
+ntasks=96, cpus-per-tasks=1: t=21.8 s
+ntasks=48, cpus-per-tasks=1: t=39.4 s
+
+### Cascade Lake AP (avx2)
+
+ntasks=96, cpus-per-tasks=1: t=22.0 s
+ntasks=48, cpus-per-tasks=1: t=41.1 s
+
+### Cascade Lake (avx512)
+
+ntasks=32, cpus-per-tasks=1: t=55.1 s
