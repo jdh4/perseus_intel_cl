@@ -91,12 +91,12 @@ module load anaconda3/2020.2
 python random_array.py
 ```
 
-| Node          | Run Time (s) for 4 GB array  |
-| ------------- |:-------------:|
-| ap            | 17.8      |
-| cl            | 17.3      |
-| amd           | 18.8      |
-| broadwell     | 18.4      |
+| Node          | Run Time (s) for 4 GB array  | Run Time (s) for 40 GB array |
+| ------------- |:----------------------------:|:----------------------------:|
+| ap            | 17.8      | 174.6 |
+| cl            | 17.3      | 169.3 |
+| amd           | 18.8      | 189.1 |
+| broadwell     | 18.4      | 184.8 |
 
 ## LU decomposition
 
