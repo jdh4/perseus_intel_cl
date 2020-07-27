@@ -258,6 +258,25 @@ thermo          100
 run             1000
 ```
 
+```
+#!/bin/bash
+#SBATCH --job-name=lj-melt       # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=28       # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G is default)
+#SBATCH --time=00:10:00          # total run time limit (HH:MM:SS)
+
+hostname
+
+module purge
+module load intel/19.0/64/19.0.5.281 intel-mpi/intel/2018.3/64
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+srun $HOME/.local/bin/lmp_perseus_broadwell -sf omp -in in.melt
+```
+
 ### Broadwell
 
 ```
