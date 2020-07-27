@@ -437,6 +437,10 @@ group		peptide type <= 12
 run		1000
 ```
 
+### Broadwell (xHost = avx2)
+
+ntasks=28, cpus-per-tasks=1: t=78.1 s  
+
 ### Cascade Lake AP (avx512)
 
 ntasks=96, cpus-per-tasks=1: t=21.8 s  
