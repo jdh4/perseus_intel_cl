@@ -218,4 +218,4 @@ OMP_NUM_TASKS=16 python svd.py
 | ap            | 38.8   |
 | cl            | 36.9   |
 | amd           | 92.4   |
-| broadwell     |    |
+| broadwell     | 54.2   |
