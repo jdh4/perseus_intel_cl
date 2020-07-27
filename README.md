@@ -401,6 +401,10 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_amd_avx2 -
 -D PKG_USER-OMP=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes ../cmake
 ```
 
+ntasks=64, cpus-per-tasks=1: t=24.9 s  
+ntasks=32, cpus-per-tasks=1: t=53.4 s    
+
+
 # LAMMPS (solvated peptide)
 
 ```
@@ -435,14 +439,41 @@ run		1000
 
 ### Cascade Lake AP (avx512)
 
-ntasks=96, cpus-per-tasks=1: t=21.8 s
-ntasks=48, cpus-per-tasks=1: t=39.4 s
+ntasks=96, cpus-per-tasks=1: t=21.8 s  
+ntasks=48, cpus-per-tasks=1: t=39.4 s  
 
 ### Cascade Lake AP (avx2)
 
-ntasks=96, cpus-per-tasks=1: t=22.0 s
-ntasks=48, cpus-per-tasks=1: t=41.1 s
+ntasks=96, cpus-per-tasks=1: t=22.0 s  
+ntasks=48, cpus-per-tasks=1: t=41.1 s  
 
 ### Cascade Lake (avx512)
 
-ntasks=32, cpus-per-tasks=1: t=55.1 s
+ntasks=32, cpus-per-tasks=1: t=55.1 s  
+
+### AMD (avx2)
+
+ntasks=64, cpus-per-tasks=1: t=28.7 s  
+
+```
+#!/bin/bash
+#SBATCH --job-name=peptide       # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=64
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=250G
+#SBATCH --time=00:10:00          # total run time limit (HH:MM:SS)
+#SBATCH -p test
+#SBATCH -C amd
+
+hostname
+
+numactl -H
+
+module purge
+module load intel/19.0/64/19.0.5.281 intel-mpi/intel/2018.3/64
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+srun $HOME/.local/bin/lmp_perseus_amd_avx2 -sf omp -in ../in.peptide
+```
