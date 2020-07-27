@@ -24,10 +24,10 @@ Slurm as well as a special partition.
 ```
 
 ```
-HOSTNAMES     STATE    CPUS S:C:T    CPUS(A/I/O/T)   CPU_LOAD MEMORY   GRES     PARTITION          AVAIL_FEATURES
-perseus-ap1   idle     96   2:48:1   0/96/0/96       0.01     768000   (null)   test               ap
-perseus-r1c1n idle     32   2:16:1   0/32/0/32       0.02     190000   (null)   test               cl
-perseus-amd   idle     64   2:32:1   0/64/0/64       0.01     256000   (null)   test               amd
+HOSTNAMES       STATE    CPUS S:C:T    CPUS(A/I/O/T)   CPU_LOAD MEMORY   GRES     PARTITION          AVAIL_FEATURES
+perseus-ap1     idle     96   2:48:1   0/96/0/96       0.01     768000   (null)   test               ap
+perseus-r1c1n2  idle     32   2:16:1   0/32/0/32       0.02     190000   (null)   test               cl
+perseus-amd     idle     64   2:32:1   0/64/0/64       0.01     256000   (null)   test               amd
 ```
 
 ```
