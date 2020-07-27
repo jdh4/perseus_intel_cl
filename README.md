@@ -229,6 +229,35 @@ wget https://github.com/lammps/lammps/archive/stable_3Mar2020.tar.gz
 module load intel/19.0/64/19.0.5.281 intel-mpi/intel/2018.3/64
 ```
 
+```
+units           lj
+atom_style      atomic
+
+lattice         fcc 0.8442
+region          box block 0 30 0 30 0 30
+create_box      1 box
+create_atoms    1 box
+mass            1 1.0
+
+replicate       5 5 5 
+
+velocity        all create 1.0 87287
+
+pair_style      lj/cut 2.5
+pair_coeff      1 1 1.0 1.0 2.5
+
+neighbor        0.3 bin
+neigh_modify    every 20 delay 0 check no
+
+fix             1 all nve
+fix             2 all langevin 1.0 1.0 1.0 48279
+
+timestep        0.005
+
+thermo          5000
+run             10000
+```
+
 ### Broadwell
 
 ```
