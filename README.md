@@ -364,6 +364,10 @@ ntasks=48, cpus-per-tasks=1: t=38.7 s
 ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s  
 ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=39.0 s (-Ofast -xCORE-AVX512 -mtune=cascadelake -qopt-zmm-usage=high -mcmodel=medium -shared-intel -qopt-streaming-stores=always)  
 
+### no vec on AP
+
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=41.5 s
+
 ### Cascade Lake (avx512)
 
 Here we use the same avx512 build as for the AP node.
