@@ -362,6 +362,7 @@ ntasks=96, cpus-per-tasks=1: t=18.7 s
 ntasks=1, cpus-per-tasks=96: t=323.0 s  
 ntasks=48, cpus-per-tasks=1: t=38.7 s  
 ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s  
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=39.0 s (-Ofast -xCORE-AVX512 -mtune=cascadelake -qopt-zmm-usage=high -mcmodel=medium -shared-intel -qopt-streaming-stores=always)  
 
 ### Cascade Lake (avx512)
 
