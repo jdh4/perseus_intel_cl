@@ -347,6 +347,8 @@ ntasks=28, cpus-per-tasks=1: t=72.5 s
 ntasks=4, cpus-per-tasks=7: t=123.4 s  
 ntasks=7, cpus-per-tasks=4: t=102.7 s  
 ntasks=14, cpus-per-tasks=1: t=148.7 s  
+ntasks=56, cpus-per-tasks=1, nodes=2: t=35.4 s 
+ntasks=84, cpus-per-tasks=1, nodes=3: t=23.2 s 
 
 ### Cascade Lake AP (avx512)
 
@@ -407,7 +409,8 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_amd_avx2 -
 ```
 
 ntasks=64, cpus-per-tasks=1: t=24.9 s  
-ntasks=32, cpus-per-tasks=1: t=53.4 s    
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=35.5 s  
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=53.5 s  
 
 
 # LAMMPS (solvated peptide)
