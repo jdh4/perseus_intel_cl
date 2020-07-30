@@ -361,9 +361,12 @@ cmake3 -D CMAKE_INSTALL_PREFIX=$HOME/.local -D LAMMPS_MACHINE=perseus_ap_avx512 
 ```
 
 ntasks=96, cpus-per-tasks=1: t=18.7 s  
-ntasks=1, cpus-per-tasks=96: t=323.0 s  
+ntasks=1, cpus-per-tasks=96: t=323.0 s 
+ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t=28.7 s  
 ntasks=48, cpus-per-tasks=1: t=38.7 s  
 ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=38.7 s  
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: 50.7 s  
+
 ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=39.0 s (-Ofast -xCORE-AVX512 -mtune=cascadelake -qopt-zmm-usage=high -mcmodel=medium -shared-intel -qopt-streaming-stores=always)  
 
 ### no vec on AP
@@ -374,8 +377,8 @@ ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=41.5 s
 
 Here we use the same avx512 build as for the AP node.
 
-ntasks=32, cpus-per-tasks=1: t=54.0 s  
-ntasks=16, cpus-per-tasks=1: t=108.1 s  
+ntasks=32, cpus-per-tasks=1: t=54.9 s  
+ntasks=16, cpus-per-tasks=1, ntasks-per-socket=8: t=93.4 s  
 
 
 ### Cascade Lake AP (avx2)
