@@ -502,3 +502,21 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 srun $HOME/.local/bin/lmp_perseus_amd_avx2 -sf omp -in ../in.peptide
 ```
+
+## GROMACS
+
+### Broadwell
+
+```
+module load intel/19.0/64/19.0.5.281 rh/devtoolset/8
+module load intel-mpi/intel/2018.3/64
+
+OPTFLAGS="-Ofast -xCORE-AVX2 -mtune=broadwell -DNDEBUG"
+-DGMX_SIMD=AVX2_256 -DGMX_DOUBLE=OFF \
+```
+ntasks=28, cpus-per-tasks=1: t=62.7 s (threaded)  
+ntasks=28, cpus-per-tasks=1: t=64.6 s  
+ntasks=56, cpus-per-tasks=1 (nodes=2): t=35.2 s 
+ntasks=84, cpus-per-tasks=1 (nodes=3): t=25.1 s 
+
+
