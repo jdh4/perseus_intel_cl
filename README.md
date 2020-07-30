@@ -418,6 +418,8 @@ ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=53.5 s
 
 # LAMMPS (solvated peptide)
 
+2.44 GB: FFTs, collectives, long-range forces
+
 ```
 units		real
 atom_style	full
@@ -451,11 +453,15 @@ run		1000
 ### Broadwell (xHost = avx2)
 
 ntasks=28, cpus-per-tasks=1: t=78.1 s  
+ntasks=56, cpus-per-tasks=1, nodes=2: t=41.7 s  
+ntasks=84, cpus-per-tasks=1, nodes=3: t=30.3 s  
 
 ### Cascade Lake AP (avx512)
 
 ntasks=96, cpus-per-tasks=1: t=21.8 s  
-ntasks=48, cpus-per-tasks=1: t=39.4 s  
+ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t=29.9 s  
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=39.4 s  
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=24: t=51.1 s  
 
 ### Cascade Lake AP (avx2)
 
@@ -465,10 +471,14 @@ ntasks=48, cpus-per-tasks=1: t=41.1 s
 ### Cascade Lake (avx512)
 
 ntasks=32, cpus-per-tasks=1: t=55.1 s  
+ntasks=16, cpus-per-tasks=1, ntasks-per-socket=8: t=92.4 s  
+
 
 ### AMD (avx2)
 
 ntasks=64, cpus-per-tasks=1: t=28.7 s  
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=36.5 s  
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=53.5 s  
 
 ```
 #!/bin/bash
