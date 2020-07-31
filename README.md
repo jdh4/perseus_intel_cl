@@ -536,3 +536,6 @@ ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=50.9 s (mpi)
 ### CL (avx512)
 ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=45.8 s (mpi)
 ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=55.8 s (mpi)
+
+### AMD
+ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t= s (mpi)
