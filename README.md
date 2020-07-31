@@ -519,4 +519,20 @@ ntasks=28, cpus-per-tasks=1: t=64.6 s
 ntasks=56, cpus-per-tasks=1 (nodes=2): t=35.2 s 
 ntasks=84, cpus-per-tasks=1 (nodes=3): t=25.1 s 
 
+### AP (avx512)
 
+ntasks=96, cpus-per-tasks=1: t=21.8 s (threaded)  
+ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t=47.9 s (threaded)  
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=42.8 s (threaded)  
+ntasks=16, cpus-per-tasks=4, ntasks-per-socket=8: t=116.2 s (threaded)  
+ntasks=2, cpus-per-tasks=32, ntasks-per-socket=1, t=47.2 s (threaded)  
+
+ntasks=96, cpus-per-tasks=1: t=21.4 s (mpi)
+ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t=30.2 s (mpi)  
+ntasks=48, cpus-per-tasks=1, ntasks-per-socket=24: t=32.7 s (mpi)  
+ntasks=36, cpus-per-tasks=1, ntasks-per-socket=18: t=40.1 s (mpi)  
+ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=50.9 s (mpi)  
+
+### CL (avx512)
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=45.8 s (mpi)
+ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=55.8 s (mpi)
