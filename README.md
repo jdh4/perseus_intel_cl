@@ -521,6 +521,12 @@ ntasks=84, cpus-per-tasks=1 (nodes=3): t=25.1 s
 
 ### AP (avx512)
 
+```
+module purge
+module load intel/19.0/64/19.0.5.281 intel-mpi/intel/2018.3/64 rh/devtoolset/8
+OPTFLAGS="-Ofast -xCORE-AVX512 -mtune=cascadelake -DNDEBUG"
+```
+
 ntasks=96, cpus-per-tasks=1: t=21.8 s (threaded)  
 ntasks=64, cpus-per-tasks=1, ntasks-per-socket=32: t=47.9 s (threaded)  
 ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=42.8 s (threaded)  
