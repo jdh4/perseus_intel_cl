@@ -38,6 +38,10 @@ user	0m2.632s
 icc -Ofast -xCORE-AVX2 abc.c
 real	0m1.360s
 user	0m1.351s
+
+icc -Ofast -xCORE-AVX512 abc.c
+real	0m1.361s
+user	0m1.351s
 ```
 
 ```
