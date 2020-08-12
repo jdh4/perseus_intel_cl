@@ -43,6 +43,10 @@ icc -Ofast -xCORE-AVX512 abc.c
 real	0m1.361s
 user	0m1.351s
 
+icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
+real	0m0.704s
+user	0m0.694s
+
 == adroit compute nodes with load intel/19.1/64/19.1.1.217 ==
 
 icc -Ofast abc.c
