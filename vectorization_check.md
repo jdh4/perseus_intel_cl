@@ -42,6 +42,21 @@ user	0m1.351s
 icc -Ofast -xCORE-AVX512 abc.c
 real	0m1.361s
 user	0m1.351s
+
+== adroit compute nodes with load intel/19.1/64/19.1.1.217 ==
+
+icc -Ofast abc.c
+
+real	0m3.029s
+user	0m3.020s
+
+icc -Ofast -xCORE-AVX2 abc.c
+real	0m1.563s
+user	0m1.556s
+
+icc -Ofast -xCORE-AVX512 abc.c
+real	0m1.564s
+user	0m1.559s
 ```
 
 ```
