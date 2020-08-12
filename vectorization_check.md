@@ -3,6 +3,8 @@
 The following was on the standard cascade lake test node on Perseus:
 
 ```
+== 1/10 loops ==
+
 gcc -g -O0 abc.c
 real	0m8.601s
 user	0m8.573s
@@ -15,7 +17,7 @@ gcc -O3 -mavx2 abc.c
 real	0m0.943s
 user	0m0.935s
 
-=== module load rh8 ===
+=== 1/10 loops and module load rh8 ===
 
 gcc -O3 abc.c
 real	0m0.792s
@@ -47,7 +49,7 @@ icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
 real	0m0.704s
 user	0m0.694s
 
-== adroit compute nodes with load intel/19.1/64/19.1.1.217 ==
+== 10x loops on adroit compute nodes with load intel/19.1/64/19.1.1.217 ==
 
 icc -Ofast abc.c
 
