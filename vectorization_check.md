@@ -1,3 +1,9 @@
+# USER-INTEL underperforming on Cascade Lake
+
+lmp_cascade which was built on X works on adroit (32 s). BIG PIECE OF PUZZLE  
+lmp_adroit_uintel works on adroit (32 s).  
+lmp_adroit_d works as expected (61 s).
+
 # Vectorization Check
 
 The following was on the standard cascade lake test node on Perseus:
