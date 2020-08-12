@@ -57,6 +57,10 @@ user	0m1.556s
 icc -Ofast -xCORE-AVX512 abc.c
 real	0m1.564s
 user	0m1.559s
+
+icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
+real	0m0.922s
+user	0m0.918s
 ```
 
 ```
