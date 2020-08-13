@@ -123,3 +123,7 @@ void main(int argc, char *argv[]) {
     printf("%f\n",d/ARRAY_SIZE);
 }
 ```
+
+## Useful Links
+
+[https://stackoverflow.com/questions/47878352/how-to-check-if-compiled-code-uses-sse-and-avx-instructions/50056059](https://stackoverflow.com/questions/47878352/how-to-check-if-compiled-code-uses-sse-and-avx-instructions/50056059)
