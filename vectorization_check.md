@@ -154,6 +154,32 @@ Be weary of the number of context switches:
 	Exit status: 0
 ```
 
+```
+$ perf stat -r 5 -d ./a.out 
+40.950000
+40.950000
+40.950000
+40.950000
+40.950000
+
+ Performance counter stats for './a.out' (5 runs):
+
+          3,548.80 msec task-clock:u              #    1.000 CPUs utilized            ( +-  0.05% )
+                 0      context-switches:u        #    0.000 K/sec                  
+                 0      cpu-migrations:u          #    0.000 K/sec                  
+               238      page-faults:u             #    0.067 K/sec                    ( +-  0.31% )
+                 0      cycles:u                  #    0.000 GHz                    
+    14,080,354,932      instructions:u                                                ( +-  0.00% )
+     1,280,053,143      branches:u                #  360.701 M/sec                    ( +-  0.00% )
+             7,148      branch-misses:u           #    0.00% of all branches          ( +-  0.21% )
+            87,442      L1-dcache-loads:u         #    0.025 M/sec                    ( +-  0.23% )
+             8,114      L1-dcache-load-misses:u   #    9.28% of all L1-dcache hits    ( +-  0.75% )
+                 0      LLC-loads:u               #    0.000 K/sec                  
+                 0      LLC-load-misses:u         #    0.00% of all LL-cache hits   
+
+           3.54934 +- 0.00188 seconds time elapsed  ( +-  0.05% )
+```
+
 ## Useful Links
 
 [https://stackoverflow.com/questions/47878352/how-to-check-if-compiled-code-uses-sse-and-avx-instructions/50056059](https://stackoverflow.com/questions/47878352/how-to-check-if-compiled-code-uses-sse-and-avx-instructions/50056059)
