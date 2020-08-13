@@ -19,66 +19,51 @@ The following was on the standard cascade lake test node on Perseus:
 
 gcc -g -O0 abc.c
 real	0m8.601s
-user	0m8.573s
 
 gcc -O3 abc.c
 real	0m2.124s
-user	0m2.114s
 
 gcc -O3 -mavx2 abc.c
 real	0m0.943s
-user	0m0.935s
 
 === 1/10 loops and module load rh8 ===
 
 gcc -O3 abc.c
 real	0m0.792s
-user	0m0.785s
 
 gcc -O3 -mavx2 abc.c
 real	0m0.479s
-user	0m0.471s
 
 gcc -O3 -march=skylake-avx512 abc.c
 real	0m0.468s
-user	0m0.461s
 
 === 10x loops and module load intel/19.1/64/19.1.1.217 ===
 
 icc -Ofast abc.c
 real	0m2.641s
-user	0m2.632s
 
 icc -Ofast -xCORE-AVX2 abc.c
 real	0m1.360s
-user	0m1.351s
 
 icc -Ofast -xCORE-AVX512 abc.c
 real	0m1.361s
-user	0m1.351s
 
 icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
 real	0m0.704s
-user	0m0.694s
 
 == 10x loops on adroit compute nodes with load intel/19.1/64/19.1.1.217 ==
 
 icc -Ofast abc.c
-
 real	0m3.029s
-user	0m3.020s
 
 icc -Ofast -xCORE-AVX2 abc.c
 real	0m1.563s
-user	0m1.556s
 
 icc -Ofast -xCORE-AVX512 abc.c
 real	0m1.564s
-user	0m1.559s
 
 icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
 real	0m0.922s
-user	0m0.918s
 ```
 
 ```
