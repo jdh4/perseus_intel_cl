@@ -9,7 +9,7 @@ lmp_adroit_d works as expected (61 s).
 ## Della (mix)
 
 lmp_della_uintel does not work (54 s) on della cascade.  
-lmp_cascade does not work (56 s) on della skylake.
+lmp_cascade does not work (56 s) on della skylake.  
 lmp_adroit_uintel does not work (57 s) on della skylake
 
 # Vectorization Check
