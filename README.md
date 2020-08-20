@@ -544,5 +544,5 @@ ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=45.8 s (mpi)
 ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=55.8 s (mpi)  
 
 ### AMD (gcc8/openmpi)
-ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t= 46.9 s (non-mpi)
+ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t= 46.9 s (non-mpi)  
 ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t= 47.9 s
