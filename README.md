@@ -503,7 +503,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 srun $HOME/.local/bin/lmp_perseus_amd_avx2 -sf omp -in ../in.peptide
 ```
 
-## GROMACS
+## GROMACS (rnase)
 
 ### Broadwell
 
@@ -546,3 +546,16 @@ ntasks=24, cpus-per-tasks=1, ntasks-per-socket=12: t=55.8 s (mpi)
 ### AMD (gcc/openmpi)
 ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t= 46.9 s (non-mpi)  
 ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t= 47.9 s (non-mpi gcc9)
+
+### AMD (-GMX_SIMD=AVX2_128 and OPTFLAGS="-Ofast -DNDEBUG")
+t=58.2 s (non-mpi)
+t=64.1 s (mpi)
+module load intel/19.1/64/19.1.1.217 rh/devtoolset/8
+module load intel-mpi/intel/2018.3/64
+```
+CPU info:
+    Vendor: AMD
+    Brand:  AMD EPYC 7542 32-Core Processor                
+    Family: 23   Model: 49   Stepping: 0
+    Features: aes amd apic avx avx2 clfsh cmov cx8 cx16 f16c fma htt lahf misalignsse mmx msr nonstop_tsc pclmuldq pdpe1gb popcnt pse rdrnd rdtscp sha sse2 sse3 sse4a sse4.1 sse4.2 ssse3 x2apic
+```
