@@ -100,6 +100,11 @@ gcc -Ofast -march=haswell abc.c (a.out is 9944 in size)
 gcc -Ofast -fno-tree-vectorize cba.c
 15.7 s
 
+== AMD with rh9 ==
+
+gcc -Ofast -march=znver2 -flto -funroll-all-loops abc.c (on della)
+4.6 s (on perseus AMD)
+
 == AMD with intel/19.1/64/19.1.1.217 ==
 
 icc -O0 -no-vec cba.c
@@ -116,7 +121,6 @@ icc -Ofast -axCORE-AVX2 cba.c
 
 icc -Ofast -march=core-avx2 -ipo -unroll-aggressive -qopt-prefetch cba.c
 1.5 s
-
 ```
 
 ```
