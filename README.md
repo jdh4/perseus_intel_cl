@@ -553,6 +553,7 @@ t=64.1 s (mpi)
 module load intel/19.1/64/19.1.1.217 rh/devtoolset/8
 module load intel-mpi/intel/2018.3/64
 ```
+SIMD instructions:  AVX2_128
 CPU info:
     Vendor: AMD
     Brand:  AMD EPYC 7542 32-Core Processor                
