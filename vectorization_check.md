@@ -76,11 +76,11 @@ real	0m1.564s
 
 icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
 real	0m0.922s
-'''
+```
 
 # AMD
 
-'''
+```
 == AMD with rh8 ==
 
 gcc -O0 abc.c
