@@ -76,6 +76,47 @@ real	0m1.564s
 
 icc -Ofast -xCORE-AVX512 -qopt-zmm-usage=high abc.c
 real	0m0.922s
+
+== AMD with rh8 ==
+
+gcc -O0 abc.c
+124.2 s
+
+gcc -Ofast abc.c
+7.7 s
+
+gcc -Ofast -mavx2 abc.c (a.out is 9944 in size)
+4.6 s
+
+gcc -Ofast -march=core-avx2 abc.c (a.out is 9944 in size)
+4.6 s
+
+gcc -Ofast -march=native abc.c (a.out is 9944 in size)
+4.6 s
+
+gcc -Ofast -march=haswell abc.c (a.out is 9944 in size)
+4.6 s
+
+gcc -Ofast -fno-tree-vectorize cba.c
+15.7 s
+
+== AMD with intel/19.1/64/19.1.1.217 ==
+
+icc -O0 -no-vec cba.c
+143.2 s
+
+icc -Ofast -xCORE-AVX2 cba.c
+illegal instruction
+
+icc -Ofast -march=core-avx2 cba.c
+1.5 s
+
+icc -Ofast -axCORE-AVX2 cba.c
+3.1 s
+
+icc -Ofast -march=core-avx2 -ipo -unroll-aggressive -qopt-prefetch cba.c
+1.5 s
+
 ```
 
 ```
@@ -84,12 +125,12 @@ real	0m0.922s
 #SBATCH --nodes=1                # node count
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --mem=190000
+#SBATCH --mem=190000M
 #SBATCH --time=00:02:00          # total run time limit (HH:MM:SS)
 #SBATCH -p test
 #SBATCH -C cl
 
-time ./a.out
+/usr/bin/time ./a.out
 ```
 
 ```
