@@ -560,3 +560,7 @@ CPU info:
     Family: 23   Model: 49   Stepping: 0
     Features: aes amd apic avx avx2 clfsh cmov cx8 cx16 f16c fma htt lahf misalignsse mmx msr nonstop_tsc pclmuldq pdpe1gb popcnt pse rdrnd rdtscp sha sse2 sse3 sse4a sse4.1 sse4.2 ssse3 x2apic
 ```
+
+### AMD (-GMX_SIMD=AVX2_256 and OPTFLAGS="-Ofast -DNDEBUG")
+t=48.0 s (non-mpi)
+t=47.4 s (mpi)
