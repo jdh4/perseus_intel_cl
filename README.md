@@ -564,3 +564,17 @@ CPU info:
 ### AMD (-GMX_SIMD=AVX2_256 and OPTFLAGS="-Ofast -DNDEBUG")
 t=48.0 s (non-mpi)
 t=47.4 s (mpi)
+
+
+## notes
+
+Make sure that extra memory dimms are worth the price
+One user found they could go up to 16 to leveled off for memory bandwidth:
++ If got with AP then need to fill all dimm cards per socket (would not get more than 32 cores on ap so 64 per node)
++ frequency stepping is used amd and intel
+
+One user sees no differnce on ap between avx2 and avx512
+Try new and old mpi
+
+In regards to the AP node that has 12 channels per slot, Is memory setup correctly in dimm channels. (July 8th) 48 dimms. numactl -H shows evenly distributed.
+dmidcode
