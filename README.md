@@ -278,6 +278,8 @@ OMP_NUM_TASKS=16 python svd.py
 
 ## LAMMPS (simple atomic fluid)
 
+![lammps_lennard_jones_benchmarks_aug2020.png](lammps_lennard_jones_benchmarks_aug2020.png)
+
 ```
 ssh perseus
 wget https://github.com/lammps/lammps/archive/stable_3Mar2020.tar.gz
@@ -417,6 +419,8 @@ ntasks=32, cpus-per-tasks=1, ntasks-per-socket=16: t=53.5 s
 
 
 # LAMMPS (solvated peptide)
+
+![lammps_peptide_benchmarks_aug2020.png](lammps_peptide_benchmarks_aug2020.png)
 
 2.44 GB: FFTs, collectives, long-range forces
 
